@@ -19,12 +19,19 @@ class Alerts extends Component {
 
       if (error.message.message)
         alert.error(`Message: ${error.message.message.join()}`);
+
+      if (error.message.non_field_errors)
+        alert.error(error.message.non_field_errors.join());
+
+      if (error.message.username) alert.error(error.message.username.join());
     }
 
     if (message !== prevProps.message) {
       if (message.deleteLead) alert.success(message.deleteLead);
 
       if (message.addLead) alert.success(message.addLead);
+
+      if (message.passwordsNotMatch) alert.error(message.passwordsNotMatch);
     }
   }
 
